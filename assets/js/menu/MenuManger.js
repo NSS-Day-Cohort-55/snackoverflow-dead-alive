@@ -5,3 +5,8 @@ export const getFoods = () => {
     response.json()
   );
 };
+export const getOrders = () => {
+  return fetch(`${apiURL}/orders?_embed=orderFoods`).then((response) =>
+    response.json()
+  );
+};
