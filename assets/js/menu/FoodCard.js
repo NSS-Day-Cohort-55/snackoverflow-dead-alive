@@ -9,7 +9,6 @@ export const FoodCard = (foodObj) => {
                 <h5 class="card-title">${foodObj.name}</h5>
                 <p class="card-text">${foodObj.description}</p>
                 ${foodObj.isVegetarian?  "<img src=assets/images/icon-veg.png></img>": ""}
-                
                 <p>Price: $${foodObj.price}</p>
                 <button type="button" class="btn btn-primary">Order</button>
                 <label>Quantity:</label>
