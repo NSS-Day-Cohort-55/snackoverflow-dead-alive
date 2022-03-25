@@ -1,6 +1,5 @@
 export const FoodCard = (foodObj) => {
-
-    return `
+  return `
     <div class="col-sm-6 g-4">
         <div class="card">
         <div class="h-100">
@@ -10,10 +9,11 @@ export const FoodCard = (foodObj) => {
                 <h5 class="card-title">${foodObj.name}</h5>
                 <p class="card-text">${foodObj.description}</p>
                 <p>Price: $${foodObj.price}</p>
-                <!-- <button type="button" class="btn btn-primary">Example Bootstrap Button</button> -->
+                <button type="button" class="btn btn-primary">Order</button>
+                <label>Quantity:</label>
+                <input type="number" min="0" id="item-qty"></input>
             </div>
         </div>
     </div>
-    `
-}
-
+    `;
+};
