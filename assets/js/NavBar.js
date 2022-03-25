@@ -1,24 +1,23 @@
-import { getLoggedInUser } from "./auth/UserManager.js"
+import { getLoggedInUser } from "./auth/UserManager.js";
 import { LoginForm } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 import { FoodList } from "./menu/FoodsList.js";
-import * as UserManager from "./auth/UserManager.js"
+import * as UserManager from "./auth/UserManager.js";
 
 export const NavBar = () => {
-    const headerElement = document.querySelector("header");
+  const headerElement = document.querySelector("header");
 
-    headerElement.addEventListener("click", event => {
-        if (event.target.id === "login") {
-            showLoginRegister()
-        }else if (event.target.id === "menu"){
-            FoodList();
-        }
-    })
+  headerElement.addEventListener("click", (event) => {
+    if (event.target.id === "login") {
+      showLoginRegister();
+    } else if (event.target.id === "menu") {
+      FoodList();
+    }
+  });
 
-
-    const showLoginRegister = () => {
-        const contentElement = document.querySelector("main");
-        contentElement.innerHTML = `
+  const showLoginRegister = () => {
+    const contentElement = document.querySelector("main");
+    contentElement.innerHTML = `
         <div class="container-fluid">
         <div class="row">
           <div class="col-5">
@@ -31,19 +30,17 @@ export const NavBar = () => {
       
         </div>
       </div>`;
+  };
+
+  const showLogin = () => {
+    if (getLoggedInUser().id) {
+      return `<p class="nav-link" id="logout">Logout</p>`;
+    } else {
+      return `<p class="nav-link" id="login">Login</p>`;
     }
+  };
 
-    
-
-    const showLogin = () => {
-        if (getLoggedInUser().id) {
-            return `<p class="nav-link" id="logout">Logout</p>`
-        } else {
-            return `<p class="nav-link" id="login">Login</p>`
-        }
-    }
-
-    headerElement.innerHTML = `
+  headerElement.innerHTML = `
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
         
             <div class="container-fluid">
@@ -57,6 +54,9 @@ export const NavBar = () => {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
+                    <li>
+                        <p>Welcome, ${getLoggedInUser().name}!</p>
+                    </li>
                     <li class="nav-item">
                         <p class="nav-link" aria-current="page" id="menu">Menu</p>
                     </li>
@@ -68,8 +68,9 @@ export const NavBar = () => {
                     ${showLogin()}
                     </li>
                     </ul>
+                    
                 </div>
             </div>
         </nav>
-    `
-}
+    `;
+};
